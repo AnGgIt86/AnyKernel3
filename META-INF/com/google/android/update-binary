@@ -411,9 +411,9 @@ ui_print "= / ___/ , _/ /_/ / // / _// /__  / /   =";
 ui_print "=/_/  /_/|_|\____/\___/___/\___/ /_/    =";
 ui_print "=========================================";
 ui_print "= Kernel version  : 4.9.xxx             =";
-ui_print "= Supoort Android : 10 - 12             =";
+ui_print "= Supoort Android : 11 - 12             =";
 ui_print "= Device          : Redmi 5 (rosy)      =";
-ui_print "= Maintaiter      : FinixDev™           =";
+ui_print "= Maintaiter      : NFS-Project™           =";
 ui_print "=========================================";
 
 setup_env;
