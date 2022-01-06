@@ -73,3 +73,10 @@ on boot
     chown system system /sys/devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-03/200f000.qcom,spmi:qcom,pmi8940@3:qcom,haptics@c000/leds/vibrator/vmax_mv_strong
     write /sys/class/leds/vibrator/vmax_mv 2204
     
+    # LKM
+    chmod 666 /sys/module/lowmemorykiller/parameters/minfree
+    chown root /sys/module/lowmemorykiller/parameters/minfree
+    write /sys/module/lowmemorykiller/parameters/minfree 18432,23040,27648,32256,55296,80640
+    write /sys/module/lowmemorykiller/parameters/cost 32
+    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
+	
