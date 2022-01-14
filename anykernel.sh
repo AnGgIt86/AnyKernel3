@@ -120,13 +120,13 @@ if [ -e /system/etc/init/hw/init.rc ]; then
 		remove_line /system/etc/init/hw/init.rc "import /vendor/etc/init/hw/init.finix.rc";
 		backup_file /system/etc/init/hw/init.rc;
 		insert_line /system/etc/init/hw/init.rc "init.finix.rc" before "import /init.environ.rc" "import /vendor/etc/init/hw/init.finix.rc";
-	else
-		if [ -e /vendor/etc/init/hw/init.qcom.rc ]; then
-			cp -rpf /vendor/etc/init/hw/init.qcom.rc~  /vendor/etc/init/hw/init.qcom.rc
-				remove_line /vendor/etc/init/hw/init.qcom.rc "import /vendor/etc/init/hw/init.finix.rc";
-				backup_file /vendor/etc/init/hw/init.qcom.rc;
-				insert_line /vendor/etc/init/hw/init.qcom.rc "init.finix.rc" before "import /vendor/etc/init/hw/init.qcom.usb.rc" "import /vendor/etc/init/hw/init.finix.rc";
-		fi;
+fi;
+
+if [ -e /vendor/etc/init/hw/init.qcom.rc ]; then
+	cp -rpf /vendor/etc/init/hw/init.qcom.rc~  /vendor/etc/init/hw/init.qcom.rc
+		remove_line /vendor/etc/init/hw/init.qcom.rc "import /vendor/etc/init/hw/init.finix.rc";
+		backup_file /vendor/etc/init/hw/init.qcom.rc;
+		insert_line /vendor/etc/init/hw/init.qcom.rc "init.finix.rc" before "import /vendor/etc/init/hw/init.qcom.usb.rc" "import /vendor/etc/init/hw/init.finix.rc";
 fi;
 #Spectrum========================================
 

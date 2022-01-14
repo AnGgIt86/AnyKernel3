@@ -79,4 +79,13 @@ on boot
     write /sys/module/lowmemorykiller/parameters/minfree 18432,23040,27648,32256,55296,80640
     write /sys/module/lowmemorykiller/parameters/cost 32
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
-	
+    
+    # Adreno Idler
+    chown system system /sys/module/adreno_idler/parameters/adreno_idler_active
+    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_active
+    chown system system /sys/module/adreno_idler/parameters/adreno_idler_downdifferential
+    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_downdifferential
+    chown system system /sys/module/adreno_idler/parameters/adreno_idler_idlewait
+    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_idlewait
+    chown system system /sys/module/adreno_idler/parameters/adreno_idler_idleworkload
+    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_idleworkload
