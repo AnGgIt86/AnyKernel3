@@ -99,7 +99,7 @@ on boot
 
 on property:sys.boot_completed=1
     # LMK
-    write /sys/module/lowmemorykiller/parameters/minfree 18432,23040,27648,32256,55296,80640
+    write /sys/module/lowmemorykiller/parameters/minfree 0,2096,8729,15972,24457,36700
     write /sys/module/lowmemorykiller/parameters/cost 32
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
     
