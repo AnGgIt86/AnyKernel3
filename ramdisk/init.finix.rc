@@ -88,9 +88,7 @@ on boot
     chown root /sys/module/lowmemorykiller/parameters/minfree
     chmod 666 /sys/module/lowmemorykiller/parameters/cost
     chown root /sys/module/lowmemorykiller/parameters/cost
-    chmod 666 /sys/module/lowmemorykiller/parameters/vmpressure_file_min
-    chown root /sys/module/lowmemorykiller/parameters/vmpressure_file_min
-    
+
     # Flashlight
    chown root system sys/devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-03/200f000.qcom,spmi:qcom,pmi8940@3:qcom,leds@d300/leds/led:torch_0/max_brightness
    chmod 0660 sys/devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-03/200f000.qcom,spmi:qcom,pmi8940@3:qcom,leds@d300/leds/led:torch_0/max_brightness
@@ -101,8 +99,7 @@ on property:sys.boot_completed=1
     # LMK
     write /sys/module/lowmemorykiller/parameters/minfree 0,2096,8729,15972,24457,36700
     write /sys/module/lowmemorykiller/parameters/cost 32
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
-    
+
     # KCAL Display <!-- cool amoled -->
     write /sys/devices/platform/kcal_ctrl.0/kcal_cont 258
     write /sys/devices/platform/kcal_ctrl.0/kcal_min 35
