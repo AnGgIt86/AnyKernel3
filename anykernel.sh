@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-supported.versions=11-12
+supported.versions=11-12-12.1-12L
 '; } # end properties
 
 # shell variables
