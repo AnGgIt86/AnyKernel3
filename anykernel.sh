@@ -4,7 +4,14 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-supported.versions=11-12-12.1-12L
+do.devicecheck=1
+do.modules=0
+do.systemless=0
+do.cleanup=1
+do.cleanuponabort=1
+device.name1=rosy
+device.name2=Redmi 5
+supported.versions=
 '; } # end properties
 
 # shell variables
