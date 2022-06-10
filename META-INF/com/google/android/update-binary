@@ -211,7 +211,9 @@ abort() {
 do_devicecheck() {
   test "$(file_getprop anykernel.sh do.devicecheck)" == 1 || return 1;
   local device devicename match product testname vendordevice vendorproduct;
-  ui_print " " "Checking device...";
+  ui_print "=========================================";
+  ui_print "=         ...Checking device...         =";
+  ui_print "=========================================";
   device=$(getprop ro.product.device 2>/dev/null);
   product=$(getprop ro.build.product 2>/dev/null);
   vendordevice=$(getprop ro.product.vendor.device 2>/dev/null);
@@ -219,7 +221,7 @@ do_devicecheck() {
   for testname in $(file_getprop anykernel.sh 'device.name.*'); do
     for devicename in $device $product $vendordevice $vendorproduct; do
       if [ "$devicename" == "$testname" ]; then
-        ui_print "- $testname" " ";
+        ui_print "= Device Name     : $testname                =";
         match=1;
         break 2;
       fi;
@@ -239,37 +241,39 @@ int2ver() {
   fi;
 }
 do_versioncheck() {
-  test "$(file_getprop anykernel.sh supported.versions)" || return 1;
-  local android_ver hi_ver lo_ver parsed_ver supported supported_ver;
-  ui_print "Checking Android version...";
-  supported_ver=$(file_getprop anykernel.sh supported.versions | $BB tr -d '[:space:]');
+  test "$(file_getprop anykernel.sh do.supported.versions)" == 1 || return 1;
+  local android_ver;
   android_ver=$(file_getprop /system/build.prop ro.build.version.release);
-  parsed_ver=$(int2ver $android_ver);
-  if echo $supported_ver | $BB grep -q '-'; then
-    lo_ver=$(int2ver "$(echo $supported_ver | $BB cut -d- -f1)");
-    hi_ver=$(int2ver "$(echo $supported_ver | $BB cut -d- -f2)");
-    if echo -e "$hi_ver\n$lo_ver\n$parsed_ver" | $BB sort -g | $BB grep -n "$parsed_ver" | $BB grep -q '^2:'; then
-      supported=1;
-    fi;
+  if [ "$do.supported.versions" ]; then
+    ui_print "= Android Version : $android_ver                  =";
   else
-    for ver in $(echo $supported_ver | $BB sed 's;,; ;g'); do
-      if [ "$(int2ver $ver)" == "$parsed_ver" ]; then
-        supported=1;
-        break;
-      fi;
-    done;
+    abort " " "Checking Android Version. Error'...";
   fi;
-  if [ "$supported" ]; then
-    ui_print "- $android_ver" " ";
+}
+do_sdkversioncheck() {
+  test "$(file_getprop anykernel.sh do.version.sdk)" == 1 || return 1;
+  local sdk_ver;
+  sdk_ver=$(file_getprop /system/build.prop ro.build.version.sdk);
+  if [ "$do.version.sdk" ]; then
+    ui_print "= Sdk Version     : $sdk_ver                  =";
   else
-    abort " " "Unsupported Android version. Aborting...";
+    abort " " "Checking Sdk Version. Error'...";
+  fi;
+}
+do_buildidcheck() {
+  test "$(file_getprop anykernel.sh do.build.id)" == 1 || return 1;
+  local build_id;
+  build_id=$(file_getprop /system/build.prop ro.build.id);
+  if [ "$do.build.id" ]; then
+    ui_print "= Build ID        : $build_id     =";
+  else
+    abort " " "Checking Build ID. Error'...";
   fi;
 }
 do_levelcheck() {
-  test "$(file_getprop anykernel.sh supported.patchlevels)" || return 1;
+  test "$(file_getprop anykernel.sh do.supported.patchlevels)" == 1 || return 1;
   local android_lvl hi_lvl lo_lvl parsed_lvl supported_lvl;
-  ui_print "Checking Android security patch level...";
-  supported_lvl=$(file_getprop anykernel.sh supported.patchlevels | $BB grep -oE '[0-9]{4}-[0-9]{2}|-');
+  supported_lvl=$(file_getprop /system/build.prop ro.build.version.security_patch | $BB grep -oE '[0-9]{4}-[0-9]{2}|-');
   android_lvl=$(file_getprop /system/build.prop ro.build.version.security_patch);
   parsed_lvl=$(echo $android_lvl | $BB grep -oE '[0-9]{4}-[0-9]{2}');
   if echo $supported_lvl | $BB grep -q '^\-'; then
@@ -283,7 +287,8 @@ do_levelcheck() {
     hi_lvl=9999-99;
   fi;
   if echo -e "$hi_lvl\n$lo_lvl\n$parsed_lvl" | $BB sort -g | $BB grep -n "$parsed_lvl" | $BB grep -q '^2:'; then
-    ui_print "- $android_lvl" " ";
+    ui_print "= Security Patch  : $android_lvl          =";
+    ui_print "=========================================";
   else
     abort " " "Unsupported Android security patch level. Aborting...";
   fi;
@@ -420,8 +425,11 @@ setup_env;
 
 do_devicecheck;
 do_versioncheck;
+do_sdkversioncheck;
+do_buildidcheck;
 do_levelcheck;
 
+ui_print " ";
 ui_print "- Installing...";
 CORE=$($BB grep -oE 'ak.*core.sh' anykernel.sh);
 test -f tools/$CORE || $BB ln -s $AKHOME/tools/ak*-core.sh $AKHOME/tools/$CORE;

@@ -5,13 +5,16 @@
 # begin properties
 properties() { '
 do.devicecheck=1
+do.supported.versions=1
+do.version.sdk=1
+do.build.id=1
+do.supported.patchlevels=1
 do.modules=0
 do.systemless=0
 do.cleanup=1
 do.cleanuponabort=1
 device.name1=rosy
 device.name2=Redmi 5
-supported.versions=
 '; } # end properties
 
 # shell variables
