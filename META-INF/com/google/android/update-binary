@@ -221,7 +221,7 @@ do_devicecheck() {
   for testname in $(file_getprop anykernel.sh 'device.name.*'); do
     for devicename in $device $product $vendordevice $vendorproduct; do
       if [ "$devicename" == "$testname" ]; then
-        ui_print "= Device Name     : $testname                =";
+        ui_print "• Device Name     : $testname                 ";
         match=1;
         break 2;
       fi;
@@ -245,7 +245,7 @@ do_versioncheck() {
   local android_ver;
   android_ver=$(file_getprop /system/build.prop ro.build.version.release);
   if [ "$do.supported.versions" ]; then
-    ui_print "= Android Version : $android_ver                  =";
+    ui_print "• Android Version : $android_ver                   ";
   else
     abort " " "Checking Android Version. Error'...";
   fi;
@@ -255,7 +255,7 @@ do_sdkversioncheck() {
   local sdk_ver;
   sdk_ver=$(file_getprop /system/build.prop ro.build.version.sdk);
   if [ "$do.version.sdk" ]; then
-    ui_print "= Sdk Version     : $sdk_ver                  =";
+    ui_print "• Sdk Version     : $sdk_ver                   ";
   else
     abort " " "Checking Sdk Version. Error'...";
   fi;
@@ -265,7 +265,7 @@ do_buildidcheck() {
   local build_id;
   build_id=$(file_getprop /system/build.prop ro.build.id);
   if [ "$do.build.id" ]; then
-    ui_print "= Build ID        : $build_id     =";
+    ui_print "• Build ID        : $build_id      ";
   else
     abort " " "Checking Build ID. Error'...";
   fi;
@@ -287,7 +287,7 @@ do_levelcheck() {
     hi_lvl=9999-99;
   fi;
   if echo -e "$hi_lvl\n$lo_lvl\n$parsed_lvl" | $BB sort -g | $BB grep -n "$parsed_lvl" | $BB grep -q '^2:'; then
-    ui_print "= Security Patch  : $android_lvl          =";
+    ui_print "• Security Patch  : $android_lvl           ";
     ui_print "=========================================";
   else
     abort " " "Unsupported Android security patch level. Aborting...";
@@ -405,6 +405,17 @@ if [ $? != 0 -o -z "$(ls bin)" ]; then
   abort "Busybox setup failed. Aborting...";
 fi;
 
+ui_print "=========================================";
+ui_print "=           __  __   ____    _____      =";
+ui_print "=          |  \/  | |  _ \  |_   _|     =";
+ui_print "=          | |\/| | | |_) |   | |       =";
+ui_print "=          | |  | | |  _ <    | |       =";
+ui_print "=          |_|  |_| |_| \_\   |_|       =";
+ui_print "=        _  __                    _     =";
+ui_print "=       | |/ /___ _ __ _ __   ___| |    =";
+ui_print "=       | ' // _ \ '__| '_ \ / _ \ |    =";
+ui_print "=       | . \  __/ |  | | | |  __/ |    =";
+ui_print "=       |_|\_\___|_|  |_| |_|\___|_|    =";
 ui_print "=========================================";
 ui_print "=                _  __ ___ ___          =";
 ui_print "=               / |/ / __/ __/          =";
