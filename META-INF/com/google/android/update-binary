@@ -406,17 +406,6 @@ if [ $? != 0 -o -z "$(ls bin)" ]; then
 fi;
 
 ui_print "=========================================";
-ui_print "=           __  __   ____    _____      =";
-ui_print "=          |  \/  | |  _ \  |_   _|     =";
-ui_print "=          | |\/| | | |_) |   | |       =";
-ui_print "=          | |  | | |  _ <    | |       =";
-ui_print "=          |_|  |_| |_| \_\   |_|       =";
-ui_print "=        _  __                    _     =";
-ui_print "=       | |/ /___ _ __ _ __   ___| |    =";
-ui_print "=       | ' // _ \ '__| '_ \ / _ \ |    =";
-ui_print "=       | . \  __/ |  | | | |  __/ |    =";
-ui_print "=       |_|\_\___|_|  |_| |_|\___|_|    =";
-ui_print "=========================================";
 ui_print "=                _  __ ___ ___          =";
 ui_print "=               / |/ / __/ __/          =";
 ui_print "=         __   /    / _/_\ \   __       =";
@@ -426,8 +415,8 @@ ui_print "=  / _ \/ _ \/ __ \__ / / __/ ___/_  __/=";
 ui_print "= / ___/ , _/ /_/ / // / _// /__  / /   =";
 ui_print "=/_/  /_/|_|\____/\___/___/\___/ /_/    =";
 ui_print "=========================================";
-ui_print "= Kernel version  : 4.9                 =";
-ui_print "= Supoort Android : All Version         =";
+ui_print "= Kernel version  : 4.9.337             =";
+ui_print "= Supoort Android : 12 - 13 (only)      =";
 ui_print "= Device          : Redmi 5 (rosy)      =";
 ui_print "= Maintaiter      : NFS-Project™        =";
 ui_print "=========================================";
