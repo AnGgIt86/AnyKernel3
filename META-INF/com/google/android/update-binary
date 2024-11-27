@@ -108,8 +108,8 @@ mount_all() {
       if [ $? != 0 ]; then
         $BB umount /system;
         $BB umount -l /system 2>/dev/null;
-        test -e /dev/block/bootdevice/by-name/system || local slot=$(getprop ro.boot.slot_suffix 2>/dev/null);
-        $BB mount -o ro -t auto /dev/block/bootdevice/by-name/system$slot /system_root;
+        test -e /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system || local slot=$(getprop ro.boot.slot_suffix 2>/dev/null);
+        $BB mount -o ro -t auto /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system$slot /system_root;
       fi;
     ;;
   esac;
@@ -415,9 +415,9 @@ ui_print "=  / _ \/ _ \/ __ \__ / / __/ ___/_  __/=";
 ui_print "= / ___/ , _/ /_/ / // / _// /__  / /   =";
 ui_print "=/_/  /_/|_|\____/\___/___/\___/ /_/    =";
 ui_print "=========================================";
-ui_print "= Kernel version  : 4.9.337             =";
-ui_print "= Supoort Android : 12 - 13 (only)      =";
-ui_print "= Device          : Redmi 5 (rosy)      =";
+ui_print "= Kernel version  : 3.18.53             =";
+ui_print "= Supoort Android : 7.1.1 (only)         =";
+ui_print "= Device          : Samsung J2 Prime    =";
 ui_print "= Maintaiter      : NFS-Project™        =";
 ui_print "=========================================";
 
