@@ -13,8 +13,6 @@ do.modules=0
 do.systemless=0
 do.cleanup=1
 do.cleanuponabort=1
-device.name1=rosy
-device.name2=Redmi 5
 '; } # end properties
 
 # shell variables
@@ -44,33 +42,6 @@ mount -o remount,rw /storage;
 
 ## AnyKernel install
 dump_boot;
-
-# Clean up other kernels' ramdisk files before installing ramdisk
-rm -rf /vendor/etc/init/hw/init.mrt.rc
-
-#Spectrum========================================
-cp -rpf $home/ramdisk/init.mrt.rc /vendor/etc/init/hw/init.mrt.rc
-chmod 644 /vendor/etc/init/hw/init.mrt.rc
-#spectrum write
-if [ -e /system/etc/init/hw/init.rc ]; then
-	cp -rpf /system/etc/init/hw/init.rc~ /system/etc/init/hw/init.rc
-		remove_line /system/etc/init/hw/init.rc "import /vendor/etc/init/hw/init.mrt.rc";
-		backup_file /system/etc/init/hw/init.rc;
-		insert_line /system/etc/init/hw/init.rc "init.mrt.rc" before "import /init.environ.rc" "import /vendor/etc/init/hw/init.mrt.rc";
-fi;
-
-if [ -e /vendor/etc/init/hw/init.qcom.rc ]; then
-	cp -rpf /vendor/etc/init/hw/init.qcom.rc~  /vendor/etc/init/hw/init.qcom.rc
-		remove_line /vendor/etc/init/hw/init.qcom.rc "import /vendor/etc/init/hw/init.mrt.rc";
-		backup_file /vendor/etc/init/hw/init.qcom.rc;
-		insert_line /vendor/etc/init/hw/init.qcom.rc "init.mrt.rc" before "import /vendor/etc/init/hw/init.qcom.usb.rc" "import /vendor/etc/init/hw/init.mrt.rc";
-fi;
-#Spectrum========================================
-
-rm -rf /system/etc/init/hw/init.rc~
-rm -rf /vendor/etc/init/hw/init.qcom.rc~
-
-# end ramdisk changes
 
 write_boot;
 ## end install
