@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # global properties
 properties() { '
-kernel.string=ExampleKernel by osm0sis @ xda-developers
+kernel.string=
 do.devicecheck=0
 do.modules=0
 do.systemless=1
@@ -15,7 +15,7 @@ device.name2=
 device.name3=
 device.name4=
 device.name5=
-supported.versions=
+supported.versions=7.0.0 - 7.1.2
 supported.patchlevels=
 supported.vendorpatchlevels=
 '; } # end properties
@@ -32,7 +32,7 @@ set_perm_recursive 0 0 750 750 $RAMDISK/init* $RAMDISK/sbin;
 BLOCK=/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/boot;
 IS_SLOT_DEVICE=0;
 RAMDISK_COMPRESSION=auto;
-PATCH_VBMETA_FLAG=auto;
+PATCH_VBMETA_FLAG=0;
 
 # import functions/variables and setup patching - see for reference (DO NOT REMOVE)
 . tools/ak3-core.sh;

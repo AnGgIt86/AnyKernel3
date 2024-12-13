@@ -554,7 +554,6 @@ if [ -f version ]; then
   ui_printfile version;
   ui_print " ";
 fi;
-ui_print " " "AnyKernel3 by osm0sis @ xda-developers" " ";
 grep -oE 'AK_BASE.*' META-INF/com/google/android/updater-script >&2;
 ui_print " ";
 
@@ -569,7 +568,7 @@ ui_print "= / ___/ , _/ /_/ / // / _// /__  / /   =";
 ui_print "=/_/  /_/|_|\____/\___/___/\___/ /_/    =";
 ui_print "=========================================";
 ui_print " Kernel version  : 3.18.xxx";
-ui_print " Supoort Android : 7.1.1 (only)";
+ui_print " Supoort Android : Nougat (only)";
 ui_print " Device          : Samsung J2 Prime";
 ui_print " Maintaiter      : AnGgIt86";
 ui_print "=========================================";
