@@ -38,7 +38,7 @@ PATCH_VBMETA_FLAG=0;
 . tools/ak3-core.sh;
 
 # boot install
-dump_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
+split_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
 
 # init.rc
 # backup_file init.rc;
@@ -56,7 +56,7 @@ dump_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_b
 # patch_fstab fstab.tuna /data ext4 options "data=ordered" "nomblk_io_submit,data=writeback";
 # append_file fstab.tuna "usbdisk" fstab;
 
-write_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
+flash_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
 ## end boot install
 
 
